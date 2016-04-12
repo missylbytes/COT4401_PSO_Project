@@ -237,7 +237,7 @@
             this.Controls.Add(this.btn_start);
             this.MinimumSize = new System.Drawing.Size(790, 547);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Particle Swarm Optimization Demonstration";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ParticlePlot)).EndInit();
             this.groupBox1.ResumeLayout(false);

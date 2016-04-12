@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(623, 404);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Info";
             this.ResumeLayout(false);
 
         }

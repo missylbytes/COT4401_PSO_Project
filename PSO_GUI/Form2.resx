@@ -120,8 +120,6 @@
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>This application demonstrates the Particle Swarm Optimization (PSO). The basic functionality is that particles search for the optimal solution to a function. First the particles are initialized in the search space. The search space consists of the input values of the function. Then the particles move through the search space according to basic PSO functionality. Eventually the particles converge onto the optimal solution. In this application, the algorithm searches for the minimum of the function.
 
-UI:
-
 Scatter Plot: This is a graphical display of the particles. Each dot represents particle. When the algorithm is run this graph will periodically update to show how the particles move through the search space. 
 
 Start: Press this button to start the algorithm. The algorithm will take about 10 seconds to run.

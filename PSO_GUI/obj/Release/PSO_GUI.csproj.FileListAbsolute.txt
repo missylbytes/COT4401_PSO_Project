@@ -10,3 +10,5 @@ C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_GU
 C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Release\PSO_GUI.exe
 C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Release\PSO_GUI.pdb
 C:\Users\Missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Release\PSO_GUI.Form2.resources
+C:\Users\Missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Release\PSO_GUI.exe.CodeAnalysisLog.xml
+C:\Users\Missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Release\PSO_GUI.exe.lastcodeanalysissucceeded
