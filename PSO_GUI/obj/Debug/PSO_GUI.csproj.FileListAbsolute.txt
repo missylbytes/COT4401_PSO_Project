@@ -1,0 +1,12 @@
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Debug\PSO_GUI.exe.config
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.csprojResolveAssemblyReference.cache
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.Form1.resources
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.Properties.Resources.resources
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.csproj.GenerateResource.Cache
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Debug\PSO_GUI.exe
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Debug\PSO_GUI.pdb
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.exe
+c:\users\missyl\documents\visual studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.pdb
+C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Debug\PSO_Algorithm.dll
+C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\bin\Debug\PSO_Algorithm.pdb
+C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_GUI\obj\Debug\PSO_GUI.Form2.resources
