@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 
@@ -205,27 +201,45 @@ namespace PSO_Algorithm
             }
         }
 
-        public double convergance()
+        public double convergance(int fun)
         {
             double numConverged = 0;
             double tempX = 0;
             double tempY = 0;         
 
-
-            for (int i = 0; i < numParticles; ++i)
+            switch (fun)
             {
-                tempX = particles[i].particleX - globalBest.particleX;
-                tempX = Math.Abs(tempX / globalBest.particleX);
+                case 0:
+                    for (int i = 0; i < numParticles; ++i)
+                    {
+                        tempX = particles[i].particleX;
+                        tempY = particles[i].particleY - globalBest.particleY;
 
-                tempY = particles[i].particleY - globalBest.particleY;
-                tempY = Math.Abs(tempY / globalBest.particleY);
-                
-                //Console.WriteLine(tempX + " " + tempY);
-                if (tempX <= 0.01 && tempY <= 0.01)
-                {
-                    ++numConverged;
+                        if (tempX <= 0.1 && tempY <= 0.1)
+                        {
+                            ++numConverged;
+                        }
+                    }
+                    break;
+                case 1:
+                case 2:
+                default:
+                    for (int i = 0; i < numParticles; ++i)
+                    {
+                        tempX = particles[i].particleX - globalBest.particleX;
+                        tempX = Math.Abs(tempX / globalBest.particleX);
+
+                        tempY = particles[i].particleY - globalBest.particleY;
+                        tempY = Math.Abs(tempY / globalBest.particleY);
+
+                        if (tempX <= 0.01 && tempY <= 0.01)
+                        {
+                            ++numConverged;
+                        }
+                    }
+                    break;
                 }
-            }
+
 
             return (numConverged / numParticles);
         }

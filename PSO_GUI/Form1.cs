@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.IO;
 using System.Windows.Forms;
 using PSO_Algorithm;
-using System.Threading;
 
 namespace PSO_GUI
 {
@@ -18,7 +8,7 @@ namespace PSO_GUI
     {
         public Boolean start;
         public psoClass runVar = new psoClass();
-        public double vMax = 50;
+        public double vMax = 25;
         public int runs = 0;
         public int selFunct = 0;
 
@@ -71,7 +61,7 @@ namespace PSO_GUI
                 this.tbXcoor.Text = Math.Round( runVar.globalBest.particleX, 2).ToString(); 
                 this.tbYcoor.Text = Math.Round(runVar.globalBest.particleY, 2).ToString();
                 this.tbOpt.Text = Math.Round(runVar.globalBest.pValue,2).ToString();
-                this.tbPercConv.Text = Math.Round(runVar.convergance()*100, 2).ToString();
+                this.tbPercConv.Text = Math.Round(runVar.convergance(selFunct) *100, 2).ToString();
             }
                 
         }

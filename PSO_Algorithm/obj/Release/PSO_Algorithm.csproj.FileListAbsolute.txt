@@ -2,3 +2,4 @@ C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_Al
 C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_Algorithm\bin\Release\PSO_Algorithm.pdb
 C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_Algorithm\obj\Release\PSO_Algorithm.dll
 C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_Algorithm\obj\Release\PSO_Algorithm.pdb
+C:\Users\Missyl\Documents\Visual Studio 2015\Projects\COT4401_PSO_Project\PSO_Algorithm\obj\Release\PSO_Algorithm.csprojResolveAssemblyReference.cache
