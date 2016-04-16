@@ -1,9 +1,20 @@
-﻿using System;
+﻿/*
+ * psoClass.cs
+ * Melisa Griffin
+ * 4/16/2016
+ * 
+ * This file defines the classes Particle and psoClass.
+ *
+ */
 
-
+using System;
 
 namespace PSO_Algorithm
 {
+    /*
+     * Class Particle: This class defines the Particle Objects. These are the 
+     * actual particles that are doing the swarming. 
+     */
     public class Particle
     {
         public double particleX { get; set; }        //Particle X coordinate
@@ -14,10 +25,13 @@ namespace PSO_Algorithm
         public double perBestY  { get; set; }        //Personal best Y coordinate
         public double velX      { get; set; }        //Velocity x distance
         public double velY      { get; set; }        //Velocity y distance
-
     }
 
 
+    /*
+     * This class implements the actual PSO algorithm.
+     * 
+     */
     public class psoClass
     {
         #region Member Variables
@@ -63,14 +77,21 @@ namespace PSO_Algorithm
             //create the global best particle object
             globalBest = new Particle();
 
+            //This will initialize everything to have certain values 
+            //and positions in a grid shape
             reset();
         }
 
         public void functionCalc(int fun)
         {
+            /*
+             * This function switches between the three functions that the 
+             * program will calculate the PSO on.
+             */
             switch (fun)
             {
                 case 0:
+                    //Bohachevsky 1
                     for (int i = 0; i < numParticles; ++i)
                     {
                         particles[i].pValue = Math.Pow(particles[i].particleX, 2) + 2 * Math.Pow(particles[i].particleY, 2)
@@ -79,6 +100,7 @@ namespace PSO_Algorithm
                     }
                     break;
                 case 1:
+                    //Easom
                     for (int i = 0; i < numParticles; ++i)
                     {
                         particles[i].pValue = -Math.Cos(particles[i].particleX) * Math.Cos(particles[i].particleY) *
@@ -86,6 +108,7 @@ namespace PSO_Algorithm
                     }
                     break;
                 case 2:
+                    //Beale's
                     for (int i = 0; i < numParticles; ++i)
                     {
                         particles[i].pValue = Math.Pow(1.5 - particles[i].particleX + particles[i].particleX * particles[i].particleY, 2) +
@@ -94,6 +117,7 @@ namespace PSO_Algorithm
                     }
                     break;
                 default:
+                    //Resets the particles to 0
                     for (int i = 0; i < numParticles; ++i)
                     {
                         particles[i].pValue = 0;
@@ -105,6 +129,10 @@ namespace PSO_Algorithm
 
         public void updateBest()
         {
+            /*
+             * This function updates two things. The first is each particle's
+             * personal best, the second is the global best.
+             */ 
             for (int i = 0; i < numParticles; ++i)
             {
                 if(particles[i].pValue < particles[i].perBest)
@@ -124,15 +152,27 @@ namespace PSO_Algorithm
 
         public void updateVelPos(double vMax)
         {
-            double c = 1.494;
+            /*
+             * This function updates each particle's velocity and position.
+             */
+
+             //scalar used to control the velocity
+            double c = .5;
+
+            //generates a random scalar between 0 and 1
+            Random rand = new Random();
+            double r = rand.NextDouble();
+
             for (int i = 0; i < numParticles; ++i)
             {
-                Random rand = new Random();
-                double r = 1;// rand.NextDouble();
-
+                //calculates velocity for x and y based off of previous 
+                //velocity and their current location with respect to the 
+                //globalBest and their personal best
                 particles[i].velX = 0.5*particles[i].velX + c*r*(particles[i].perBestX - particles[i].particleX) + c*r*(globalBest.particleX - particles[i].particleX);
                 particles[i].velY = 0.5*particles[i].velY + c*r*(particles[i].perBestY - particles[i].particleY) + c*r*(globalBest.particleY - particles[i].particleY);
 
+                //These if statements restrict the particles velocity to the
+                //maximum
                 if (particles[i].velX > vMax)
                     particles[i].velX = vMax;
                 if (particles[i].velY > vMax)
@@ -143,6 +183,7 @@ namespace PSO_Algorithm
                 if (particles[i].velY < -vMax)
                     particles[i].velY = -vMax;
 
+                //calculate the particles new position based off of velocity
                 particles[i].particleX += particles[i].velX;
                 particles[i].particleY += particles[i].velY;
             }
@@ -150,33 +191,55 @@ namespace PSO_Algorithm
 
         public void reset()
         {
-
+            //first point in the grid is (1,1)
             double x = 1,
                    y = 1;
 
+            //This can be used to scale the grid size
             double scale = 10;
 
-            //Set the global best particle value and location
+            //Set the global best value
+            //Since we are looking for the minimum,
+            //the global best is set to a large value, and the coordinates
+            //just initialized to 0
             globalBest.pValue = 1000;
             globalBest.particleX = 0;
             globalBest.particleY = 0;
 
             for (int i = 0; i < numParticles/4; ++i)
             {
+                /* This sets the x and y coordinates to the initial grid
+                 *   ........|.........
+                 *   ........|.........
+                 *   ........|.........
+                 *   ........|.........
+                 *   ------------------
+                 *   ........|.........
+                 *   ........|.........
+                 *   ........|.........
+                 *   ........|......... 
+                 * 
+                 */
 
-
-                //This sets the x and y coordinates to the initial grid
+                //The first two set up the positive x, positive y plane.
                 particles[i].particleX = x / 10 * scale;
                 particles[i].particleY = y / 10 * scale;
-                particles[i + 100].particleX = -x / 10 * scale;
-                particles[i + 100].particleY = y / 10 * scale;
-                particles[i + 200].particleX = -x / 10 * scale;
-                particles[i + 200].particleY = -y / 10 * scale;
-                particles[i + 300].particleX = x / 10 * scale;
-                particles[i + 300].particleY = -y / 10 * scale;
+
+                //Set up the negative x, positive y plane.
+                particles[i + numParticles / 4].particleX = -x / 10 * scale;
+                particles[i + numParticles / 4].particleY = y / 10 * scale;
+
+                //Set up the negative x, negative y plane.
+                particles[i + numParticles / 2].particleX = -x / 10 * scale;
+                particles[i + numParticles / 2].particleY = -y / 10 * scale;
+
+                //Set up the positve x, negative y plane.
+                particles[i + numParticles - (numParticles / 4)].particleX = x / 10 * scale;
+                particles[i + numParticles - (numParticles / 4)].particleY = -y / 10 * scale;
+
 
                 //Set the particular particle's personal best value
-                //Since this is a constuctor and we are looking for the minimum,
+                //Since we are looking for the minimum,
                 //the personal best is set to a large value, and the coordinates
                 //just initialized to 0
                 particles[i].perBest = 1000;
@@ -189,6 +252,7 @@ namespace PSO_Algorithm
 
                 //increment y each time
                 ++y;
+
                 //when y gets to the top, reset it to 0, and increment x
                 if (y > Math.Sqrt(numParticles/4))
                 {
@@ -201,8 +265,13 @@ namespace PSO_Algorithm
             }
         }
 
-        public double convergance(int fun)
+        public double convergence(int fun)
         {
+            /*
+             * This function calculates the % of particles that converged onto
+             * the global best
+             */
+
             double numConverged = 0;
             double tempX = 0;
             double tempY = 0;         
@@ -210,6 +279,15 @@ namespace PSO_Algorithm
             switch (fun)
             {
                 case 0:
+                    //Bohachevsky 
+                    /*
+                     * Because Bohachevsky's minimum is at (0,0), we cannot use
+                     * the typical error equation.
+                     *   (experimental - actual)/actual
+                     *   //because you cannot divide by 0
+                     * So consider any particles within .1 to be converged on
+                     * the solution
+                     */
                     for (int i = 0; i < numParticles; ++i)
                     {
                         tempX = particles[i].particleX;
@@ -224,6 +302,13 @@ namespace PSO_Algorithm
                 case 1:
                 case 2:
                 default:
+                    //Easom and Beale's
+                    /*
+                     * For these two use the error equation:
+                     *   (experimental - actual)/actual
+                     * If a particle comes within 1% of the actual minimum 
+                     * consider the particle converged.
+                     */
                     for (int i = 0; i < numParticles; ++i)
                     {
                         tempX = particles[i].particleX - globalBest.particleX;
@@ -240,7 +325,7 @@ namespace PSO_Algorithm
                     break;
                 }
 
-
+            //returns percentage of particles that converged
             return (numConverged / numParticles);
         }
 
