@@ -247,9 +247,30 @@ namespace PSO_Algorithm
                 particles[i].perBestX = 0;
                 particles[i].perBestY = 0;
 
+                particles[i + numParticles / 4].perBest = 1000;
+                particles[i + numParticles / 4].perBestX = 0;
+                particles[i + numParticles / 4].perBestY = 0;
+
+                particles[i + numParticles / 2].perBest = 1000;
+                particles[i + numParticles / 2].perBestX = 0;
+                particles[i + numParticles / 2].perBestY = 0;
+
+                particles[i + numParticles - (numParticles / 4)].perBest = 1000;
+                particles[i + numParticles - (numParticles / 4)].perBestX = 0;
+                particles[i + numParticles - (numParticles / 4)].perBestY = 0;
+
                 //Set the particle's initial velocity to 0
                 particles[i].velX = 0;
                 particles[i].velY = 0;
+
+                particles[i + numParticles / 4].velX = 0;
+                particles[i + numParticles / 4].velY = 0;
+
+                particles[i + numParticles / 2].velX = 0;
+                particles[i + numParticles / 2].velY = 0;
+
+                particles[i + numParticles - (numParticles / 4)].velX = 0;
+                particles[i + numParticles - (numParticles / 4)].velY = 0;
 
                 //increment y each time
                 ++y;
@@ -297,7 +318,7 @@ namespace PSO_Algorithm
                         tempX = particles[i].particleX;
                         tempY = particles[i].particleY - globalBest.particleY;
 
-                        if (tempX <= 0.1 && tempY <= 0.1)
+                        if (Math.Abs(tempX) <= 0.1 && Math.Abs(tempY) <= 0.1)
                         {
                             ++numConverged;
                         }

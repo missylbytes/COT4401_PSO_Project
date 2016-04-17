@@ -138,6 +138,7 @@ namespace PSO_GUI
         {
             selFunct = this.cbFuncSel.SelectedIndex;
             runs = 0;
+            runVar.reset();
         }
 
         /*
