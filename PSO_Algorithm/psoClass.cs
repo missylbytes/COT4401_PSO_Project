@@ -158,6 +158,7 @@ namespace PSO_Algorithm
 
              //scalar used to control the velocity
             double c = .5;
+            double inertialWeight = .5;
 
             //generates a random scalar between 0 and 1
             Random rand = new Random();
@@ -168,8 +169,8 @@ namespace PSO_Algorithm
                 //calculates velocity for x and y based off of previous 
                 //velocity and their current location with respect to the 
                 //globalBest and their personal best
-                particles[i].velX = 0.5*particles[i].velX + c*r*(particles[i].perBestX - particles[i].particleX) + c*r*(globalBest.particleX - particles[i].particleX);
-                particles[i].velY = 0.5*particles[i].velY + c*r*(particles[i].perBestY - particles[i].particleY) + c*r*(globalBest.particleY - particles[i].particleY);
+                particles[i].velX = inertialWeight*particles[i].velX + c*r*(particles[i].perBestX - particles[i].particleX) + c*r*(globalBest.particleX - particles[i].particleX);
+                particles[i].velY = inertialWeight*particles[i].velY + c*r*(particles[i].perBestY - particles[i].particleY) + c*r*(globalBest.particleY - particles[i].particleY);
 
                 //These if statements restrict the particles velocity to the
                 //maximum
@@ -274,13 +275,16 @@ namespace PSO_Algorithm
 
             double numConverged = 0;
             double tempX = 0;
-            double tempY = 0;         
+            double tempY = 0;
+
+            //the amount of error allowed for Easom and Beale's
+            double errorMargin = 0.01;                   
 
             switch (fun)
             {
                 case 0:
                     //Bohachevsky 
-                    /*
+                    /* **Special Case**
                      * Because Bohachevsky's minimum is at (0,0), we cannot use
                      * the typical error equation.
                      *   (experimental - actual)/actual
@@ -317,7 +321,7 @@ namespace PSO_Algorithm
                         tempY = particles[i].particleY - globalBest.particleY;
                         tempY = Math.Abs(tempY / globalBest.particleY);
 
-                        if (tempX <= 0.01 && tempY <= 0.01)
+                        if (tempX <= errorMargin && tempY <= errorMargin)
                         {
                             ++numConverged;
                         }
